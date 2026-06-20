@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Tech & Solutions Studio</title>
+    <style>
+        :root {
+            --bg-color: #4b0a5f;
+            --text-primary: #7ba3db;
+            --text-secondary: #a0a0a0;
+            --accent: #3a86ff; /* Clean, modern tech blue */
+            --font-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            --transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: var(--font-sans);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 2rem 4%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+            background: linear-gradient(to bottom, rgba(11,11,11,0.8), rgba(11,11,11,0));
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        nav a {
+            color: var(--text-primary);
+            text-decoration: none;
+            margin-left: 2.5rem;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: var(--transition);
+            opacity: 0.8;
+        }
+
+        nav a:hover {
+            opacity: 1;
+            color: var(--accent);
+        }
+
+        /* Hero Section */
+        .hero {
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 0 4%;
+
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)),
+                url('home_2.jpeg') no-repeat center center/cover;
+}
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 300;
+            line-height: 1.2;
+            letter-spacing: -1px;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 1.5vw, 1.3rem);
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            border: 1px solid var(--text-primary);
+            color: var(--text-primary);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+            transition: var(--transition);
+        }
+
+        .btn:hover {
+            background-color: var(--text-primary);
+            color: var(--bg-color);
+            border-color: var(--text-primary);
+        }
+
+        /* Sections */
+        section {
+            padding: 8rem 4%;
+        }
+
+        .section-title {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--accent);
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title::after {
+            content: '';
+            display: inline-block;
+            width: 50px;
+            height: 1px;
+            background-color: var(--accent);
+            margin-left: 1rem;
+        }
+
+        /* Skills Grid */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .skill-card {
+            background: #060935;
+            padding: 2.5rem 2rem;
+            border: 1px solid #222;
+            transition: var(--transition);
+        }
+
+        .skill-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .skill-card h3 {
+            font-size: 1.2rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .skill-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Portfolio Grid Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            position: relative;
+            overflow: hidden;
+            height: 450px;
+            cursor: pointer;
+            border: 1px solid #1a1a1a;
+        }
+
+        .project-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+            opacity: 0.7;
+        }
+
+        .project-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 2.5rem;
+            background: linear-gradient(to top, rgba(11,11,11,1), rgba(11,11,11,0.4));
+            transition: var(--transition);
+        }
+
+        .project-card:hover .project-img {
+            transform: scale(1.03);
+            opacity: 0.9;
+        }
+
+        .project-title {
+            font-size: 1.4rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-meta {
+            font-size: 0.85rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* About Section (Two Columns) */
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 2.2rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            line-height: 1.4;
+        }
+
+        .about-text p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .about-img img {
+            width: 80%;
+            height: 40%;
+            object-fit: cover;
+            border: 1px solid #222;
+        }
+
+        /* Footer / Contact */
+        footer {
+            border-top: 1px solid #222;
+            padding: 5rem 4%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            background-color: #050505;
+        }
+
+        .footer-contact h2 {
+            font-size: 2rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+        }
+
+        .footer-contact a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 1.2rem;
+            border-bottom: 1px dashed var(--accent);
+            padding-bottom: 3px;
+            transition: var(--transition);
+        }
+
+        .footer-contact a:hover {
+            color: var(--accent);
+        }
+
+        .copyright {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 768px) {
+            header { padding: 1.5rem 4%; }
+            nav a { margin-left: 1.5rem; font-size: 0.8rem; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .about-container { grid-template-columns: 1fr; gap: 2rem; }
+            .about-img img { height: 400px; }
+            .project-card { height: 350px; }
+        }
+        .contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 4rem;
+}
+
+.contact-info h3 {
+    font-size: 2.2rem;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+}
+
+.contact-info p {
+    color: var(--text-secondary);
+    margin-bottom: 2.5rem;
+    font-size: 1.05rem;
+}
+
+.info-details {
+    margin-top: 2rem;
+}
+
+.info-item {
+    margin-bottom: 2rem;
+}
+
+.info-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accent);
+    margin-bottom: 0.3rem;
+}
+
+.info-value, .info-value a {
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 300;
+    transition: var(--transition);
+}
+
+.info-value a:hover {
+    color: var(--accent);
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    background: #121212;
+    padding: 3.5rem 3rem;
+    border: 1px solid #222;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group input, .form-group textarea {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #333;
+    padding: 0.8rem 0;
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    transition: var(--transition);
+    outline: none;
+}
+
+.form-group input:focus, .form-group textarea:focus {
+    border-bottom-color: var(--accent);
+}
+
+.form-group label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-secondary);
+    margin-bottom: 0.2rem;
+}
+
+.contact-form .btn {
+    align-self: flex-start;
+    margin-top: 1rem;
+}
+
+@media (max-width: 968px) {
+    .contact-container { grid-template-columns: 1fr; gap: 3rem; }
+    .contact-form { padding: 2.5rem 2rem; }
+
+}
+/* Container layout */
+.design-section-container {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 0 20px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Individual columns */
+.info-column {
+  flex: 1;
+  border-left: 2px solid #dca842; /* The elegant gold vertical line */
+  padding-left: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Elegant serif headings */
+.column-title {
+  font-family: 'Playfair Display', 'Georgia', 'Times New Roman', serif;
+  font-weight: 400;
+  font-size: 28px;
+  color: #e5d6d6;
+  margin: 0;
+}
+
+/* Clean sans-serif body text */
+.column-text {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #eecaca;
+  margin: 0;
+}
+
+/* Responsive adjustments for smaller screens (mobiles) */
+@media (max-width: 768px) {
+  .design-section-container {
+    flex-direction: column;
+    gap: 32px;
+  }
+}
+/* First section stays normal */
+
+
+/* Apply glassy effect to all other sections */
+
+/* Container styling */
+.skills-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 60px 20px;
+  font-family: 'Playfair Display', 'Didot', 'Georgia', serif;
+
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+
+  border-radius: 24px;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.2),
+    inset 0 1px 1px rgba(255, 255, 255, 0.2);
+
+  color: #fff;
+}
+/* Header Styling */
+.skills-header {
+  margin-bottom: 50px;
+}
+
+.skills-header .sub-title {
+  display: flex;
+  align-items: center;
+  font-family: 'Montserrat', 'Helvetica', sans-serif; /* Clean sans-serif for sub-labels */
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: #c59b27; /* Gold accent color */
+  font-weight: 600;
+}
+
+/* The gold line next to TOOLS */
+.skills-header .sub-title::before {
+  content: "";
+  display: inline-block;
+  width: 30px;
+  height: 1px;
+  background-color: #c59b27;
+  margin-right: 10px;
+}
+
+.skills-header h1 {
+  font-size: 48px;
+  font-weight: 400;
+  margin: 15px 0 0 0;
+  letter-spacing: -1px;
+}
+
+.skills-header .italic-gold {
+  color: #c59b27;
+  font-style: italic;
+}
+
+/* Responsive Grid Layout */
+.skills-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 80px;
+  row-gap: 20px;
+}
+
+/* Skill Item Layout */
+.skill-item {
+  margin-bottom: 35px;
+}
+
+.skill-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: bottom;
+  margin-bottom: 8px;
+}
+
+.skill-name {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.skill-percentage {
+  font-size: 14px;
+  color: #777777;
+  font-family: 'Helvetica Neue', Arial, sans-serif; /* Plain font for clean percentage rendering */
+}
+
+/* Custom Minimalist Progress Bar */
+.progress-bar {
+  width: 100%;
+  height: 1px; /* Very thin elegant track */
+  background-color: #e0e0e0; /* Light grey remaining track */
+  position: relative;
+}
+
+.progress-fill {
+  height: 2px; /* Slightly thicker fill line to stand out */
+  background-color: #c59b27; /* Gold fill */
+  position: absolute;
+  top: -0.5px; /* Centers the slightly thicker fill over the track */
+  left: 0;
+  transition: width 1s ease-in-out; /* Smooth loading animation */
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .skills-grid {
+    grid-template-columns: 1fr; /* Stacks columns on smaller screens */
+    column-gap: 0;
+  }
+  .skills-header h1 {
+    font-size: 36px;
+  }
+}
+/* Container Layout */
+.portfolio-video-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 80px 20px;
+  font-family: 'Playfair Display', serif;
+  background-color: #ffffff;
+}
+
+/* Section Title Styling */
+.video-header {
+  margin-bottom: 50px;
+}
+
+.video-header .sub-title {
+  display: flex;
+  align-items: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: #c59b27;
+  font-weight: 600;
+}
+
+.video-header .sub-title::before {
+  content: "";
+  display: inline-block;
+  width: 30px;
+  height: 1px;
+  background-color: #c59b27;
+  margin-right: 10px;
+}
+
+.video-header h2 {
+  font-size: 48px;
+  font-weight: 400;
+  margin: 15px 0 0 0;
+  color: #1a1a1a;
+}
+
+.video-header .italic-gold {
+  color: #c59b27;
+  font-style: italic;
+}
+
+/* Modern 2-Column Video Grid */
+.video-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 50px;
+  row-gap: 40px;
+}
+
+/* Individual Video Card wrapper */
+.video-card {
+  display: flex;
+  flex-direction: column;
+  background: #b474a9;
+  border: 1px solid #090440;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Modern hover lift effect */
+.video-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.05);
+}
+
+/* Strict 16:9 Aspect Ratio Box for Videos */
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* Keeps 16:9 ratio crisp across all screen widths */
+  background-color: #e3dede;
+  overflow: hidden;
+}
+
+.video-wrapper video,
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Video Details Description Text */
+.video-info {
+  padding: 25px 20px;
+}
+
+.video-info h3 {
+  font-size: 20px;
+  margin: 0 0 10px 0;
+  font-weight: 400;
+  color: #1a1a1a;
+  letter-spacing: -0.5px;
+}
+
+.video-info p {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #666666;
+  margin: 0;
+}
+
+/* Responsive view for mobile/tablets */
+@media (max-width: 768px) {
+  .video-grid {
+    grid-template-columns: 1fr; /* Stacks vertically on mobile devices */
+    row-gap: 35px;
+  }
+  .video-header h2 {
+    font-size: 36px;
+  }
+}
+.gradient-text {
+    font-size: 4rem;
+    font-weight: bold;
+    background: linear-gradient(
+        90deg,
+        #ff6b6b,
+        #feca57,
+        #48dbfb,
+        #ff6b6b
+    );
+    background-size: 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientMove 5s linear infinite;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0%; }
+    100% { background-position: 300%; }
+}
+#skills {
+    background: linear-gradient(135deg, #4a0225, #0e0240);
+    padding: 100px 20px;
+    color: #ffffff;
+}
+
+/* Section title */
+#skills .section-title {
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 60px;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+
+/* Skill cards (top cards) */
+.skill-card {
+    background: rgba(29, 4, 66, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 16px;
+    padding: 25px;
+    transition: 0.4s ease;
+}
+
+.skill-card:hover {
+    transform: translateY(-8px);
+    background: rgba(50, 9, 125, 0.08);
+}
+
+/* Skills container glass effect */
+.skills-container {
+    background: transparent; /* important so it doesn't block black bg */
+}
+
+/* Tools section header */
+.skills-header h1 {
+    color: #ffffff;
+}
+
+.sub-title {
+    color: #aaa;
+}
+
+/* Grid spacing */
+.skills-grid {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+}
+
+/* Skill items */
+.skill-item {
+    margin-bottom: 20px;
+}
+
+.skill-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    color: #fff;
+}
+
+/* Progress bar background */
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    overflow: hidden;
+}
+
+/* Progress fill animation */
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #ffffff, #888);
+    border-radius: 50px;
+    animation: fillBar 2s ease-in-out;
+}
+
+/* Animation */
+@keyframes fillBar {
+    from {
+        width: 0;
+    }
+}
+/* Projects Section */
+#work {
+    background: linear-gradient(135deg, #04194c, #4c034c, #5077d0);
+    padding: 100px 8%;
+    position: relative;
+}
+
+/* Video Showcase Section */
+.portfolio-video-container {
+    background: linear-gradient(135deg, rgba(15, 3, 71, 0.95), rgba(113, 3, 104, 0.95));
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(18, 177, 63, 0.08);
+    border-radius: 24px;
+    padding: 60px;
+    margin: 80px auto;
+    max-width: 1400px;
+    box-shadow: 0 20px 50px rgba(102, 102, 181, 0.35);
+}
+
+/* Optional: Add glowing effect */
+#work::before,
+.portfolio-video-container::before {
+    content: "";
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(255,215,0,0.15), transparent 70%);
+    filter: blur(80px);
+    z-index: 0;
+}
+
+#work::before {
+    top: -100px;
+    right: -100px;
+}
+
+.portfolio-video-container::before {
+    bottom: -100px;
+    left: -100px;
+}
+
+/* Keep content above glow */
+.projects-grid,
+.video-grid,
+.video-header {
+    position: relative;
+    z-index: 1;
+}
+
+/* Section Titles */
+.section-title,
+.video-header h2 {
+    color: #8488db;
+}
+
+.italic-gold,
+.sub-title {
+    color: #d4af37;
+}
+#about{
+    background: linear-gradient(
+        135deg,
+        #1a0455,
+        #5d0331,
+        #2d024c
+    );
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 900px) {
+    .about-container {
+        flex-direction: column-reverse;
+        text-align: center;
+    }
+
+    .about-text h3 {
+        font-size: 2.2rem;
+    }
+
+    .design-section-container {
+        grid-template-columns: 1fr;
+    }
+
+    .about-img img {
+        max-width: 320px;
+    }
+}
+/* =========================
+   CONTACT SECTION
+========================= */
+
+#contact {
+    padding: 8rem 8%;
+    background: linear-gradient(
+        135deg,
+        #3b0128,
+        #3b0764,
+        #1e3a8a
+    );
+    position: relative;
+    overflow: hidden;
+}
+
+/* Glow Effect */
+#contact::before {
+    content: "";
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    top: -200px;
+    right: -150px;
+    background: radial-gradient(
+        circle,
+        rgba(59,130,246,0.25),
+        transparent 70%
+    );
+    filter: blur(100px);
+}
+
+/* Container */
+.contact-container {
+    position: relative;
+    z-index: 1;
+}
+
+/* Contact Card */
+.contact-info {
+    max-width: 800px;
+    margin: auto;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 25px;
+    padding: 50px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+}
+
+/* Heading */
+.contact-info h3 {
+    color: #ffffff;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+/* Paragraph */
+.contact-info p {
+    color: #dbeafe;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+/* Section Title */
+#contact .section-title {
+    text-align: center;
+    color: #7dd3fc;
+    margin-bottom: 50px;
+    font-size: 2.5rem;
+}
+
+/* Info Items */
+.info-item {
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Labels */
+.info-label {
+    color: #60a5fa;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+}
+
+/* Values */
+.info-value {
+    color: white;
+    font-size: 1.1rem;
+}
+
+/* Links */
+.info-value a {
+    color: #93c5fd;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.info-value a:hover {
+    color: #ffffff;
+}
+
+/* Hover Effect */
+.contact-info:hover {
+    transform: translateY(-5px);
+    transition: 0.4s ease;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .contact-info {
+        padding: 30px;
+    }
+
+    .contact-info h3 {
+        font-size: 1.6rem;
+    }
+
+    #contact .section-title {
+        font-size: 2rem;
+    }
+}
+
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="logo">PORTFOLIO</div>
+        <nav>
+            <a href="#skills">Skills</a>
+            <a href="#work">Projects</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Hero Showcase Section -->
+    <main>
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <h1 class="gradient-text">Designing spacesthat inspire.</h1>
+                <p>Design Undergraduate passionate about Graphic Design, Branding, User-Centered Design, and Creative Problem Solving.</p>
+                <a href="#work" class="btn">View My Work</a>
+            </div>
+        </section>
+
+        <!-- Core Skills Section -->
+        <section id="skills">
+            <h2 class="section-title">Core Skills & Specializations</h2>
+            <div class="skills-container">
+                <div class="skill-card">
+                    <h3>UI/UX Design</h3>
+                    <p>Designing user-friendly and visually appealing digital interfaces.</p>
+                </div>
+                <div class="skill-card">
+                    <h3>Graphic Design</h3>
+                    <p>Creating creative visuals, posters, and digital artwork.</p>
+                </div>
+                <div class="skill-card">
+                    <h3>Brand Identity Design</h3>
+                    <p>Building unique brand logos, styles, and identity systems.</p>
+                </div>
+                <div class="skill-card">
+                    <h3>Visual Communication</h3>
+                    <p>Communicating ideas clearly through visual elements and design.</p>
+                </div>
+            </div>
+            <div class="skills-container">
+  <div class="skills-header">
+    <span class="sub-title">TOOLS</span>
+    <h1>Software, <span class="italic-gold">fluently.</span></h1>
+  </div>
+
+  <div class="skills-grid">
+    <div class="skills-column">
+      <div class="skill-item">
+        <div class="skill-info">
+          <span class="skill-name">AutoCAD</span>
+          <span class="skill-percentage">95%</span>
+        </div>
+        <div class="progress-bar"><div class="progress-fill" style="width: 95%;"></div></div>
+      </div>
+
+      <div class="skill-item">
+        <div class="skill-info">
+          <span class="skill-name">SketchUp</span>
+          <span class="skill-percentage">92%</span>
+        </div>
+        <div class="progress-bar"><div class="progress-fill" style="width: 92%;"></div></div>
+      </div>
+
+      <div class="skill-item">
+        <div class="skill-info">
+          <span class="skill-name">3ds Max</span>
+          <span class="skill-percentage">80%</span>
+        </div>
+        <div class="progress-bar"><div class="progress-fill" style="width: 80%;"></div></div>
+      </div>
+    </div>
+
+    <div class="skills-column">
+      <div class="skill-item">
+        <div class="skill-info">
+          <span class="skill-name">Revit</span>
+          <span class="skill-percentage">90%</span>
+        </div>
+        <div class="progress-bar"><div class="progress-fill" style="width: 90%;"></div></div>
+      </div>
+
+      <div class="skill-item">
+        <div class="skill-info">
+          <span class="skill-name">Lumion</span>
+          <span class="skill-percentage">88%</span>
+        </div>
+        <div class="progress-bar"><div class="progress-fill" style="width: 88%;"></div></div>
+      </div>
+
+      <div class="skill-item">
+        <div class="skill-info">
+          <span class="skill-name">Photoshop</span>
+          <span class="skill-percentage">86%</span>
+        </div>
+        <div class="progress-bar"><div class="progress-fill" style="width: 86%;"></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+        </section>
+
+        <!-- Project Grid Section -->
+        <section id="work">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                
+                <!-- Project 1: Final Project / Main Application -->
+                <div class="project-card">
+                    <!-- CHANGE THIS: Replace with an image of your main ICT project dashboard or UI -->
+                    <img src="PROJECT_1.jpeg" alt="ICT Solution Platform" class="project-img">
+                    <div class="project-overlay">
+                        <h3 class="project-title">Cabana Design Project</h3>
+                        <p class="project-meta">Outdoor leisure cabana design</p>
+                    </div>
+                </div>
+
+                <!-- Project 2: BI Dashboard -->
+                <div class="project-card">
+                    <!-- CHANGE THIS: Replace with a screenshot of a data project/dashboard -->
+                    <img src="cafe area.jpeg" alt="Business Intelligence Dashboard" class="project-img">
+                    <div class="project-overlay">
+                        <h3 class="project-title">Cafe Area Design</h3>
+                        <p class="project-meta">Modern cozy dining space design</p>
+                    </div>
+                </div>
+
+                <!-- Project 3: Security Implementation -->
+                <div class="project-card">
+                    <!-- CHANGE THIS: Replace with an image representing security/code analysis -->
+                    <img src="ca_van2.jpeg" alt="Threat Modeling System" class="project-img">
+                    <div class="project-overlay">
+                        <h3 class="project-title">A New Interior Design for a Motor Home Vehicle</h3>
+                        <p class="project-meta">Modern motor home interior design</p>
+                    </div>
+                </div>
+
+                <!-- Project 4: E-Commerce / Operations Solution -->
+                <div class="project-card">
+                    <!-- CHANGE THIS: Replace with an image representing e-commerce or digital operations -->
+                    <img src="acverim_project.jpeg" alt="Digital Platform Project" class="project-img">
+                    <div class="project-overlay">
+                        <h3 class="project-title">Aquarium fish shop interior design</h3>
+                        <p class="project-meta">Aquatic themed retail interior design</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <!-- CHANGE THIS: Replace with an image representing e-commerce or digital operations -->
+                    <img src="sinma_project.jpeg" alt="Digital Platform Project" class="project-img">
+                    <div class="project-overlay">
+                        <h3 class="project-title">Rio Cinema Reception Area Design</h3>
+                        <p class="project-meta">Modern nature-inspired cinema reception design</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <!-- CHANGE THIS: Replace with an image representing e-commerce or digital operations -->
+                    <img src="beech_side.jpeg" alt="Digital Platform Project" class="project-img">
+                    <div class="project-overlay">
+                        <h3 class="project-title">Beachside resort design</h3>
+                        <p class="project-meta">luxury resort design concept</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <section>
+            <div class="portfolio-video-container">
+  <div class="video-header">
+    <span class="sub-title">SHOWCASE</span>
+    <h2>Featured <span class="italic-gold">Projects.</span></h2>
+  </div>
+
+  <div class="video-grid">
+    
+    <div class="video-card">
+      <div class="video-wrapper">
+        <video controls poster="thumbnail-placeholder-1.jpg">
+          <source src="acwerim.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="video-info">
+        <h3>01 // Architectural Visualization</h3>
+        <p>A cinematic walkthrough rendering created to demonstrate spatial workflows and spatial transitions.</p>
+      </div>
+    </div>
+
+    <div class="video-card">
+      <div class="video-wrapper">
+        <iframe 
+          src="kabana_video.mp4" 
+          title="Project Video" 
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen>
+        </iframe>
+      </div>
+      <div class="video-info">
+        <h3>02 // 3D Interior Walkthrough</h3>
+        <p>High-fidelity Lumion simulation focusing on natural lighting arrays and high-gloss textures.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+        </section>
+
+        <!-- About Section featuring Your Photo -->
+        <section id="about">
+            <div class="about-container">
+                <div class="about-text">
+                    <h2 class="section-title">About</h2>
+                    <h3>Bridging technical excellence with strategic business foresight.</h3>
+                    <p style="color: rgb(230, 230, 206);">
+I'm an interior designer passionate about transforming spaces through thoughtful planning and conceptual design. My approach combines research-driven insights with creative vision to create interiors that are both beautiful and functional.
+
+Each project begins with understanding the space, its purpose, and the people inhabiting it. From initial concept through detailed planning and execution, I focus on creating
+ cohesive environments that reflect both contemporary design principles and timeless aesthetics.
+
+My work spans residential projects including bedrooms, kitchens, home offices, and living spaces each approached with the same dedication to thoughtful design and spatial planning.
+<br><br>
+</p>
+                </div>
+          
+                <div class="about-img">
+                    <!-- CHANGE THIS: Replace this link with your own professional profile picture or portrait link -->
+                    <img src="my_pic2.jpeg" alt="Professional Portrait">
+                </div>
+            </div>
+                  <div class="design-section-container">
+  
+  <div class="info-column">
+    <h2 class="column-title">Design philosophy</h2>
+    <p class="column-text">
+      Restraint over decoration. Material over finish.<br>
+      Light is the first material.
+    </p>
+  </div>
+
+  <div class="info-column">
+    <h2 class="column-title">Expertise</h2>
+    <p class="column-text">
+      Residential, commercial, hospitality, sustainable design, master planning and interiors.
+    </p>
+  </div>
+
+</div>
+        </section>
+    </main>
+
+    <!-- Modern Contact & Footer Section -->
+    <section id="contact" style="padding: 8rem 4%; background-color: #0b0b0b;">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-container">
+            
+            <!-- Left Column: Professional Details -->
+            <div class="contact-info">
+                <h3>Let's build something intelligent together.</h3>
+                <p>Whether you want to collaborate on a data analytics solution, build a secure web framework, or discuss innovative ICT infrastructures, drop a line.</p>
+                
+                <div class="info-details">
+                    <div class="info-item">
+                        <div class="info-label">Email Address</div>
+                        <!-- CHANGE THIS: Put your real email address here -->
+                        <div class="info-value"><a href="mailto:sandunidombagahawaththa@gmail.com">
+    sandunidombagahawaththa@gmail.com
+</a></div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-label">Location Base</div>
+                        <div class="info-value">Horana, Sri Lanka</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Contact Number</div>
+                        <div class="info-value">+94 762497744</div>
+                    </div>
+                </div>
+            </div>
+
+            
+        </div>
+    </section>
+
+    <!-- Clean, Low-Profile Footer Area -->
+    <footer style="border-top: 1px solid #222; padding: 3rem 4%; display: flex; justify-content: space-between; align-items: center; background-color: #050505;">
+        <div class="copyright" style="color: #a0a0a0; font-size: 0.85rem; letter-spacing: 1px;">
+            <p>&copy; 2026. Built with Clean Code & Strategic Vision.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
